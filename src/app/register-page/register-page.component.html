@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="registration form">
+    <header>Signup</header>
+
+    <form (ngSubmit)="register()">
+      <input
+        type="text"
+        placeholder="First name"
+        name="firstName"
+        [(ngModel)]="firstName"
+        required
+      />
+
+      <input
+        type="text"
+        placeholder="Last name"
+        name="lastName"
+        [(ngModel)]="lastName"
+        required
+      />
+
+      <input
+        type="email"
+        placeholder="Enter your email"
+        name="email"
+        [(ngModel)]="email"
+        required
+      />
+
+      <input
+        type="password"
+        placeholder="Create a password"
+        name="password"
+        [(ngModel)]="password"
+        required
+      />
+
+      <select
+        name="gender"
+        [(ngModel)]="gender"
+        required
+      >
+        <option value="" disabled selected>Select gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <input type="submit" class="button" value="Signup" />
+    </form>
+
+    <div class="signup">
+      <span>
+        Already have an account?
+        <a routerLink="/login">Login</a>
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="search-bar">
+  <input
+    type="text"
+    placeholder="Search movies..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearch()"
+  />
+</div>
+<div class="movies-container">
+
+  <div class="movie-grid">
+    <div class="movie-card" *ngFor="let movie of movies">
+      <div class="poster" [style.backgroundImage]="'url(' + movie.posterUrl + ')'"></div>
+      <div class="movie-info">
+        <h3>{{ movie.title }}</h3>
+        <p class="meta">
+          <span class="year">{{ movie.year }}</span>
+          <span class="rating">⭐ {{ movie.rating }}</span>
+        </p>
+        <p class="director">{{ movie.director }}</p>
+      </div>
+    </div>
+  </div>
+</div>
