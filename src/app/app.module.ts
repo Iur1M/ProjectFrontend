@@ -9,6 +9,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { MoviesPageComponent } from './movies-page/movies-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { FormsModule } from '@angular/forms';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     HomePageComponent,
     MoviesPageComponent,
     RegisterPageComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
