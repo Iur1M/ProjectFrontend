@@ -70,13 +70,13 @@ header {
     position: absolute;
     top: 70px;
     right: 0;
-    background: #000;
+    background: #363636;
     flex-direction: column;
     width: 100%;
     text-align: center;
     gap: 2rem;
     padding: 30px 0;
-
+    background: radial-gradient(circle at top, #1c1c1c, #0f0f0f);
     transform: translateY(-200%);
     transition: 0.4s ease-in-out;
   }
