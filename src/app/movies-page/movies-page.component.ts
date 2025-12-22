@@ -7,8 +7,11 @@ import { ApiService } from '../shared/api.service';
   styleUrl: './movies-page.component.css'
 })
 export class MoviesPageComponent {
-movies: any[] = [];
-  searchTerm: string = '';
+ movies: any[] = [];
+  searchTerm = '';
+
+  sortBy: string = '';
+  desc: boolean = false;
 
   constructor(private api: ApiService) {}
 
@@ -17,19 +20,32 @@ movies: any[] = [];
   }
 
   loadMovies() {
-    this.api.getMovies().subscribe(res => {
-      this.movies = res.items ?? res; // depending on your API shape
-    });
+    this.api.getMovies(this.searchTerm, this.sortBy, this.desc)
+      .subscribe(res => {
+        this.movies = res.items ?? res;
+      });
   }
 
   onSearch() {
-    if (!this.searchTerm.trim()) {
-      this.loadMovies();
-      return;
+    this.loadMovies();
+  }
+
+  onSortChange(value: string) {
+    if (value === '') {
+      this.sortBy = '';
+      this.desc = false;
     }
 
-    this.api.searchMovies(this.searchTerm).subscribe(res => {
-      this.movies = res.items ?? res;
-    });
+    if (value === 'ratingAsc') {
+      this.sortBy = 'rating';
+      this.desc = false;
+    }
+
+    if (value === 'ratingDesc') {
+      this.sortBy = 'rating';
+      this.desc = true;
+    }
+
+    this.loadMovies();
   }
 }

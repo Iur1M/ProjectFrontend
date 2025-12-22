@@ -5,17 +5,28 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiService {
-private baseUrl = 'https://localhost:7220/api/movie';
+  private baseUrl = 'https://localhost:7220/api/movie';
 
   constructor(private http: HttpClient) {}
 
-  getMovies() {
-  return this.http.get<any>('https://localhost:7220/api/movie?pageSize=50');
-}
+  getMovies(
+    search?: string,
+    sortBy?: string,
+    desc: boolean = false
+  ) {
+    let params = new HttpParams()
+      .set('pageSize', '50');
 
-searchMovies(search: string) {
-  return this.http.get<any>(
-    `https://localhost:7220/api/movie?search=${encodeURIComponent(search)}&pageSize=50`
-  );
-}
+    if (search && search.trim()) {
+      params = params.set('search', search);
+    }
+
+    if (sortBy) {
+      params = params
+        .set('sortBy', sortBy)
+        .set('desc', desc.toString());
+    }
+
+    return this.http.get<any>(this.baseUrl, { params });
+  }
 }
