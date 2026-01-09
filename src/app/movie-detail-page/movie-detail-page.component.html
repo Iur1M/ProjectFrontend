@@ -1,0 +1,51 @@
+<div class="page" *ngIf="movie">
+  <div class="container">
+    <div class="info">
+      <h1 class="title">{{ movie.title }}</h1>
+
+      <div class="meta-row">
+        <span class="year">{{ movie.year }}</span>
+        <span class="dot">•</span>
+        <span class="rating">
+          <span class="rating-value">{{ movie.rating }}</span>
+          <span class="rating-max">/10</span>
+        </span>
+      </div>
+
+      <div class="meta-list">
+        <div class="meta-item">
+          <span class="label">Director</span>
+          <span class="value">{{ movie.director }}</span>
+        </div>
+
+        <div class="meta-item">
+          <span class="label">Genre</span>
+          <span class="value">{{ movie.genre }}</span>
+        </div>
+      </div>
+
+      <p class="description">
+        {{ movie.description }}
+      </p>
+
+      <div class="buttons">
+        <button class="watch-btn" (click)="watchNow()">
+          ▶ Watch Now
+        </button>
+
+        <button class="back-btn" (click)="goBack()">
+          ← Back to Movies
+        </button>
+      </div>
+    </div>
+
+    <div class="trailer">
+      <iframe
+        [src]="safeTrailerUrl"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</div>

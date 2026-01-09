@@ -1,7 +1,9 @@
 <div class="container">
   <div class="login form">
     <header>Login</header>
-
+      <div class="error" *ngIf="errorMessage">
+          {{ errorMessage }}
+      </div>
     <form (ngSubmit)="login()">
       <input
         type="email"

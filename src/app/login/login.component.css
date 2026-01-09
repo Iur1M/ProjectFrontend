@@ -78,6 +78,14 @@
   text-decoration: underline;
 }
 
+.error {
+  margin-top: 10px;
+  color: #e50914;
+  font-size: 14px;
+  text-align: center;
+}
+
+
 @media (max-width: 500px) {
    .container {
     max-width: 95%;

@@ -2,6 +2,15 @@
   <div class="registration form">
     <header>Signup</header>
 
+    <div class="error-box" *ngIf="errorMessages.length">
+      <div *ngFor="let error of errorMessages">
+        {{ error }}
+      </div>
+    </div>
+    <div class="success-box" *ngIf="successMessage">
+      {{ successMessage }}
+    </div>
+
     <form (ngSubmit)="register()">
       <input
         type="text"
@@ -40,13 +49,18 @@
         [(ngModel)]="gender"
         required
       >
-        <option value="" disabled selected>Select gender</option>
+        <option value="" disabled>Select gender</option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="Other">Other</option>
       </select>
 
-      <input type="submit" class="button" value="Signup" />
+      <input
+        type="submit"
+        class="button"
+        [disabled]="loading"
+        [value]="loading ? 'Signing up...' : 'Signup'"
+      />
     </form>
 
     <div class="signup">

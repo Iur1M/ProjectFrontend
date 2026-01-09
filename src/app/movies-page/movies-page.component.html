@@ -1,33 +1,67 @@
 <div class="func-container">
-  <div class="search-bar">
   <input
     type="text"
+    class="search-input"
     placeholder="Search movie..."
     [(ngModel)]="searchTerm"
-    (input)="onSearch()"
+    (input)="loadMovies()"
   />
-</div>
-<div class="sort-bar">
-  <select #sortSelect (change)="onSortChange(sortSelect.value)">
-    <option value="">No sorting</option>
-    <option value="ratingAsc">Rating ↑</option>
-    <option value="ratingDesc">Rating ↓</option>
-  </select>
-</div>
-</div>
+
+  <div class="filter-bar">
+    <select
+      #sortSelect
+      class="year-select"
+      (change)="onSortChange(sortSelect.value)"
+    >
+      <option value="">No sorting</option>
+      <option value="ratingAsc">Rating ↑</option>
+      <option value="ratingDesc">Rating ↓</option>
+    </select>
+
+    <select
+      #yearSelect
+      class="year-select"
+      (change)="onYearChange(yearSelect.value)"
+    >
+      <option value="">All years</option>
+      <option *ngFor="let y of years">{{ y }}</option>
+    </select>
+
+    <select
+      #genreSelect
+      class="year-select"
+      (change)="onGenreChange(genreSelect.value)"
+    >
+      <option value="">All genres</option>
+      <option *ngFor="let genre of genres" [value]="genre">
+        {{ genre }}
+      </option>
+    </select>
+  </div>
+</div> <!-- ✅ THIS WAS MISSING -->
 
 <div class="movies-container">
-
   <div class="movie-grid">
-    <div class="movie-card" *ngFor="let movie of movies">
-      <div class="poster" [style.backgroundImage]="'url(' + movie.posterUrl + ')'"></div>
-      <div class="movie-info">
-        <h3>{{ movie.title }}</h3>
-        <p class="meta">
-          <span class="year">{{ movie.year }}</span>
-          <span class="rating">⭐ {{ movie.rating }}</span>
-        </p>
-        <p class="director">{{ movie.director }}</p>
+    <div
+      class="movie-card"
+      *ngFor="let movie of movies"
+      (click)="openDetails(movie.id)"
+    >
+      <div
+        class="poster"
+        [style.backgroundImage]="'url(' + movie.posterUrl + ')'"
+      >
+        <div class="badge-4k">4K</div>
+
+        <div class="overlay">
+          <p>{{ movie.year }}</p>
+          <p>⭐ {{ movie.rating }}</p>
+          <p>🎬 {{ movie.director }}</p>
+        </div>
+      </div>
+
+      <div class="movie-title">
+        {{ movie.title }}
       </div>
     </div>
   </div>

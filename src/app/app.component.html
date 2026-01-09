@@ -1,6 +1,11 @@
-
-<header>
+<header class="header">
   <div class="nav-container">
+    <div class="logo" routerLink="/">
+      <div class="logo-text">
+        <div class="logo-title">MOVIEVERSE</div>
+      </div>
+    </div>
+
     <input type="checkbox" id="menu-toggle" />
     <label for="menu-toggle" class="burger">
       <span></span>
@@ -11,8 +16,16 @@
     <nav class="nav">
       <a routerLink="/">Home</a>
       <a routerLink="/movies">Movies</a>
-      <a routerLink="/login">Login</a>
-      <a routerLink="/register">Register</a>
+
+      <ng-container *ngIf="!user; else loggedIn">
+        <a routerLink="/register" class="register">Register</a>
+        <a routerLink="/login" class="login">Login</a>
+      </ng-container>
+
+      <ng-template #loggedIn>
+        <span class="hello">Hello, {{ user?.firstName }}</span>
+        <a (click)="logout()" class="logout">Logout</a>
+      </ng-template>
     </nav>
   </div>
 </header>

@@ -1,45 +1,52 @@
-header {
-  width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
 .nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 64px;
+  justify-content: space-between;
+  padding: 0 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 15px 40px;
+}
+
+
+.logo-title {
+  font-weight: 700;
+  font-size: 25px;
+  color: white;
+  letter-spacing: 4px;
 }
 
 .nav {
   display: flex;
-  gap: 15rem;
+  align-items: center;
+  gap: 15px;
 }
 
 .nav a {
-  color: #F7F7F7;
+  color: white;
   text-decoration: none;
-  font-size: 25px;
-  transition: 0.3s;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  position: relative;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s;
 }
 
-.nav a:after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  height: 2px;
-  width: 0;
-  background: #fff;
-  transition: 0.3s;
+.nav a:hover {
+  background: #1f262d;
 }
 
-.nav a:hover:after {
-  width: 100%;
+.nav .register {
+  background: #1ed760;
+  color: black;
+  font-weight: 600;
+}
+
+.nav .register:hover {
+  color: rgb(255, 255, 255);
+}
+
+.nav .login {
+  background: #1f262d;
 }
 
 #menu-toggle {
@@ -49,39 +56,53 @@ header {
 .burger {
   display: none;
   flex-direction: column;
+  gap: 4px;
   cursor: pointer;
 }
 
 .burger span {
-  height: 3px;
-  width: 30px;
+  width: 22px;
+  height: 2px;
   background: white;
-  margin: 5px 0;
-  transition: 0.3s;
 }
 
+.hello {
+  color: white;
+  font-size: 16px;
+  margin-right: 10px;
+}
 
-@media (max-width: 1400px) {
+.logout {
+  background: #ff4d4d;
+  color: white;
+  cursor: pointer;
+}
+
+.logout:hover {
+  background: #ff1f1f;
+}
+
+@media (max-width: 900px) {
+  .header-search {
+    display: none;
+  }
+
   .burger {
     display: flex;
   }
 
   .nav {
     position: absolute;
-    top: 70px;
-    right: 0;
-    background: #363636;
-    flex-direction: column;
+    top: 64px;
+    left: 0;
     width: 100%;
-    text-align: center;
-    gap: 2rem;
-    padding: 30px 0;
-    background: radial-gradient(circle at top, #1c1c1c, #0f0f0f);
-    transform: translateY(-200%);
-    transition: 0.4s ease-in-out;
+    background: #0e1215;
+    flex-direction: column;
+    display: none;
+    z-index: 100;
   }
 
-  #menu-toggle:checked + .burger + .nav {
-    transform: translateY(0);
+  #menu-toggle:checked ~ .nav {
+    display: flex;
   }
 }

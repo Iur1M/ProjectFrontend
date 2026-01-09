@@ -12,13 +12,14 @@ export class ApiService {
   getMovies(
     search?: string,
     sortBy?: string,
-    desc: boolean = false
+    desc: boolean = false,
+    year?: number,
+    genre?: string
   ) {
-    let params = new HttpParams()
-      .set('pageSize', '50');
+    let params = new HttpParams().set('pageSize', '50');
 
     if (search && search.trim()) {
-      params = params.set('search', search);
+      params = params.set('search', search.trim());
     }
 
     if (sortBy) {
@@ -27,6 +28,18 @@ export class ApiService {
         .set('desc', desc.toString());
     }
 
+    if (year) {
+      params = params.set('year', year.toString());
+    }
+
+    if (genre) {
+      params = params.set('genre', genre);
+    }
+
     return this.http.get<any>(this.baseUrl, { params });
+  }
+
+  getMovieById(id: number) {
+    return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 }
